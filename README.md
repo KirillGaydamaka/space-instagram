@@ -1,6 +1,6 @@
-# Space images downloader
+# Space Instagram
 
-The script downloads images from spacex and hubble image libraries.
+The script downloads images from spacex and hubble image libraries. Then it publishes it to Instagram.
 
 ### How to install
 
@@ -9,6 +9,13 @@ Then use `pip` (or `pip3`, if there is a conflict with Python2) to install depen
 ```
 pip install -r requirements.txt
 ```
+
+use .env to set instagram username and password:
+```
+INSTAGRAM_LOGIN=yourlogin
+INSTAGRAM_PASSWORD=yourpassword
+```
+
 
 ### Project Goals
 
