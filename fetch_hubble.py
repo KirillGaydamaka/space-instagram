@@ -15,7 +15,6 @@ def download_hubble_image(image_id):
     last_image_url = images_info[-1]['file_url']
     last_image_nosslproblem_url = 'https://hubblesite.org/{}'.format(last_image_url[28:])
     image_filename = './images/{}.{}'.format(image_id, get_url_extension(last_image_url))
-    print(image_filename)
     download_image.download_image(last_image_nosslproblem_url, image_filename)
 
 
@@ -26,7 +25,6 @@ def fetch_hubble_images(collection):
 
     images_info = response.json()
     for image_info in images_info:
-        print(image_info['id'])
         download_hubble_image(image_info['id'])
     print(images_info)
 
