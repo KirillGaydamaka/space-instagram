@@ -2,6 +2,9 @@ import requests
 from pathlib import Path
 from PIL import Image
 from os import listdir
+from instabot import Bot
+from dotenv import load_dotenv
+import os
 
 TARGET_SIZE = 1080
 
@@ -63,13 +66,20 @@ def resize_all_images(originals_path, targets_path):
         target_name = '{}/{}'.format(targets_path, filename)
         resize_image(original_name, target_name)
 
-Path('./images').mkdir(parents=True, exist_ok=True)
+#Path('./images').mkdir(parents=True, exist_ok=True)
 
 #fetch_spacex_last_launch()
 #fetch_hubble_images('printshop')
 
-Path('./images_resized').mkdir(parents=True, exist_ok=True)
+#Path('./images_resized').mkdir(parents=True, exist_ok=True)
 
-resize_image('3892.jpg', 'rs.jpg')
+#resize_all_images('./images', './images_resized')
 
-resize_all_images('./images', './images_resized')
+load_dotenv()
+login = os.getenv('INSTAGRAM_LOGIN')
+password = os.getenv('INSTAGRAM_PASSWORD')
+
+
+bot = Bot()
+bot.login(username=login, password=password)
+bot.upload_photo("rs.jpg", caption="Jupyter")
