@@ -22,22 +22,27 @@ def resize_all_images(originals_path, targets_path, target_size):
         resize_image(original_name, target_name, target_size)
 
 
-Path('./images').mkdir(parents=True, exist_ok=True)
+def main():
+    Path('./images').mkdir(parents=True, exist_ok=True)
 
-fetch_spacex.fetch_spacex_last_launch()
-fetch_hubble.fetch_hubble_images('printshop')
+    fetch_spacex.fetch_spacex_last_launch()
+    fetch_hubble.fetch_hubble_images('printshop')
 
-Path('./images_resized').mkdir(parents=True, exist_ok=True)
+    Path('./images_resized').mkdir(parents=True, exist_ok=True)
 
-target_size = 1080
-resize_all_images('./images', './images_resized', target_size)
+    target_size = 1080
+    resize_all_images('./images', './images_resized', target_size)
 
-load_dotenv()
-login = os.getenv('INSTAGRAM_LOGIN')
-password = os.getenv('INSTAGRAM_PASSWORD')
+    load_dotenv()
+    login = os.getenv('INSTAGRAM_LOGIN')
+    password = os.getenv('INSTAGRAM_PASSWORD')
 
-bot = Bot()
-bot.login(username=login, password=password)
+    bot = Bot()
+    bot.login(username=login, password=password)
 
-for filename in listdir('./images_resized'):
-    bot.upload_photo('./images_resized/{}'.format(filename), caption=filename.split('.')[0])
+    for filename in listdir('./images_resized'):
+        bot.upload_photo('./images_resized/{}'.format(filename), caption=filename.split('.')[0])
+
+
+if __name__ == '__main__':
+    main()
