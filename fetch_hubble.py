@@ -23,7 +23,3 @@ def fetch_hubble_images(collection):
     images_info = response.json()
     for image_info in images_info:
         download_hubble_image(image_info['id'])
-    print(images_info)
-
-
-
