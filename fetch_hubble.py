@@ -1,9 +1,6 @@
 import requests
 import download_image
-
-
-def get_url_extension(url):
-    return url.split('.')[-1]
+import os
 
 
 def download_hubble_image(image_id):
@@ -14,7 +11,7 @@ def download_hubble_image(image_id):
     images_info = response.json()['image_files']
     last_image_url = images_info[-1]['file_url']
     last_image_nosslproblem_url = 'https://hubblesite.org/{}'.format(last_image_url[28:])
-    image_filename = './images/{}.{}'.format(image_id, get_url_extension(last_image_url))
+    image_filename = './images/{}{}'.format(image_id, os.path.splitext(last_image_url)[1])
     download_image.download_image(last_image_nosslproblem_url, image_filename)
 
 
